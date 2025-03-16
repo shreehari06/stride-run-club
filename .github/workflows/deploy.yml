@@ -22,10 +22,10 @@ jobs:
         run: yarn install
 
       - name: Build the project
-        run: yarn build
+        run: yarn build && yarn export
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # Replace with your build output directory
+          publish_dir: .next/out

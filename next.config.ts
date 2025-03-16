@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  basePath: "/stride-run-club",
+  assetPrefix: "/stride-run-club",
+  output: "export",
 };
 
 export default nextConfig;
