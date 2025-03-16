@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stride Landing
 
-## Getting Started
+This is a [Next.js](https://nextjs.org) project designed to serve as the landing page for the Stride Run Club, Bengaluru.
 
-First, run the development server:
+## Features
+
+### Announcement Service
+
+Displays announcements dynamically using the `AnnouncementService`.
+
+Run pipelines to automate adding or removing announcements -
+
+- **Add Announcements**: Use the `add-announcement` pipeline to programmatically add new announcements.
+- **Remove Announcements**: Use the `clean-announcements` pipeline to remove outdated announcements based on a configurable time period.
+
+## Development
+
+### Getting Started
+
+To start the development server, run:
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+.
+├── public/                 # Static assets
+├── src/                    # Source code
+│   ├── app/                # Application Pages
+│   ├── components/         # Reusable UI components
+│   ├── services/           # Business logic (e.g., AnnouncementService)
+│   ├── data/               # Static JSON data
+│   ├── fonts.ts            # Font configuration
+│   ├── strings.ts          # Localized strings
+│   ├── theme.ts            # Theme configuration
+├── .next/                  # Build artifacts
+├── package.json            # Project dependencies and scripts
+├── tsconfig.json           # TypeScript configuration
+└── README.md               # Project documentation
+```
