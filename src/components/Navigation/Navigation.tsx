@@ -1,15 +1,28 @@
 import React from "react";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import HomeIcon from "@mui/icons-material/Home";
+import RegisterIcon from "@mui/icons-material/HowToReg";
+import Announcements from "@mui/icons-material/Campaign";
+import { STRINGS } from "@/strings";
 
-const Navigation = () => {
+export enum NAVIGATION_PAGE {
+  "Home",
+  "Register",
+  "Announcements",
+}
+
+const Navigation = ({
+  onChange,
+}: {
+  onChange?: (newValue: NAVIGATION_PAGE) => void;
+}) => {
+  const [value, setValue] = React.useState<NAVIGATION_PAGE>(0);
+
   return (
     <BottomNavigation
       showLabels
-      value={0}
+      value={value}
       sx={{
         position: "absolute",
         bottom: 0,
@@ -17,13 +30,20 @@ const Navigation = () => {
         right: 0,
         boxShadow: 2,
       }}
-      // onChange={(event, newValue) => {
-      //   setValue(newValue);
-      // }}
+      onChange={(_event, newValue) => {
+        setValue(newValue);
+        onChange?.(newValue);
+      }}
     >
-      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      <BottomNavigationAction label={STRINGS.nav.home} icon={<HomeIcon />} />
+      <BottomNavigationAction
+        label={STRINGS.nav.register}
+        icon={<RegisterIcon />}
+      />
+      <BottomNavigationAction
+        label={STRINGS.nav.announcements}
+        icon={<Announcements />}
+      />
     </BottomNavigation>
   );
 };

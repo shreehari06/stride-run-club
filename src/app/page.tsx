@@ -3,9 +3,13 @@
 import { theme } from "@/theme";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 
-import { Header, Navigation } from "@/components";
+import { Header, Navigation, NAVIGATION_PAGE } from "@/components";
 
 export default function Home() {
+  const handleNavigationChange = (page: NAVIGATION_PAGE) => {
+    console.log("🚀 ~ handleNavigationChange ~ page:", page);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -20,6 +24,8 @@ export default function Home() {
         }}
       >
         <Header />
+
+        {/* Main content */}
         <Box
           sx={{
             display: "flex",
@@ -27,12 +33,13 @@ export default function Home() {
             gap: 2,
             height: "calc(100vh - 112px)", // 56 header + 56 nav
             overflowY: "auto",
-            border: "1px solid red",
           }}
         >
           main content
         </Box>
-        <Navigation />
+        {/* Main content end*/}
+
+        <Navigation onChange={handleNavigationChange} />
       </Box>
     </ThemeProvider>
   );
