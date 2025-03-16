@@ -24,6 +24,9 @@ jobs:
       - name: Build the project
         run: yarn build
 
+      - name: Debug paths
+        run: ls -la && ls -la out
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
