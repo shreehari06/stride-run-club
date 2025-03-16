@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/home/runner/work/stride-run-club/stride-run-club/src/app/page":["static/media/0e3334a5c5dd7757-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
