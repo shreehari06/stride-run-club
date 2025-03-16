@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1a2b3c4d-5678-90ab-cdef-1234567890ab",
+        "title": "Welcome to Our Platform",
+        "content": "We are excited to have you here. Stay tuned for updates!",
+        "timestamp": 1710585600000
+    },
+    {
+        "id": "2b3c4d5e-6789-01bc-defa-2345678901bc",
+        "title": "New Feature Released",
+        "content": "We have added a new feature to improve your experience.",
+        "timestamp": 1710672000000
+    },
+    {
+        "id": "3c4d5e6f-7890-12cd-efab-3456789012cd",
+        "title": "Scheduled Maintenance",
+        "content": "Our platform will undergo maintenance on March 20, 2025.",
+        "timestamp": 1710758400000
+    },
+    {
+        "id": "3c4d5e6f-7890-12cd-efab-3456189212cd",
+        "title": "Scheduled Maintenance",
+        "content": "Our platform will undergo maintenance on March 20, 2025.",
+        "timestamp": 1710758410001
+    }
+]
