@@ -6,11 +6,6 @@ const nextConfig: NextConfig = {
   basePath: isProd ? "/stride-run-club" : "",
   assetPrefix: isProd ? "/stride-run-club" : "",
   output: "export",
-  exportPathMap: async function () {
-    return {
-      "/": { page: "/" },
-    };
-  },
   images: {
     unoptimized: true,
   },

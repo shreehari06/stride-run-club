@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "export": "next export",
+    "postbuild": "cp -R src/data out/data",
     "start": "next start",
     "lint": "next lint"
   },
