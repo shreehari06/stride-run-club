@@ -5,7 +5,6 @@ export const metadata: Metadata = {
   title: "Stride Run Club | Bengaluru",
   description:
     "Bengaluru's most fun running club, join us for weekly runs and events!",
-  viewport: "width=device-width, initial-scale=1",
   keywords: ["running", "club", "bengaluru", "stride", "fitness", "health"],
 };
 

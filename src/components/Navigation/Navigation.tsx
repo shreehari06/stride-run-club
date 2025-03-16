@@ -7,18 +7,18 @@ import Announcements from "@mui/icons-material/Campaign";
 import { STRINGS } from "@/strings";
 
 export enum NAVIGATION_PAGE {
-  "Home",
-  "Register",
-  "Announcements",
+  Home,
+  Register,
+  Announcements,
 }
 
 const Navigation = ({
   onChange,
+  value,
 }: {
   onChange?: (newValue: NAVIGATION_PAGE) => void;
+  value: NAVIGATION_PAGE;
 }) => {
-  const [value, setValue] = React.useState<NAVIGATION_PAGE>(0);
-
   return (
     <BottomNavigation
       showLabels
@@ -31,7 +31,6 @@ const Navigation = ({
         boxShadow: 2,
       }}
       onChange={(_event, newValue) => {
-        setValue(newValue);
         onChange?.(newValue);
       }}
     >

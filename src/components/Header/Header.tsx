@@ -5,7 +5,7 @@ import React from "react";
 
 import Image from "next/image";
 
-const Header = () => {
+const Header = ({ onClick }: { onClick?: () => void }) => {
   return (
     <Box
       sx={{
@@ -21,6 +21,7 @@ const Header = () => {
         },
       }}
       className={agbalumoFont.className}
+      onClick={onClick}
     >
       <Image src={"/stride.jpeg"} width={36} height={36} alt="Stride logo" />
       <Box sx={{ typography: "title" }}> {STRINGS.title}</Box>

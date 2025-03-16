@@ -14,9 +14,11 @@
     "@fontsource/roboto": "^5.2.5",
     "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.7",
+    "@types/react-swipeable-views": "^0.13.6",
     "next": "15.2.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-swipeable-views": "^0.14.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
