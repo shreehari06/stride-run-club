@@ -17,15 +17,16 @@ import SwipeableViews from "react-swipeable-views";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState<NAVIGATION_PAGE>(
-    NAVIGATION_PAGE.Home
+    NAVIGATION_PAGE.Announcements
   );
 
   const handleNavigationChange = (page: NAVIGATION_PAGE) => {
-    setCurrentPage(page);
+    if (page === NAVIGATION_PAGE.Announcements) setCurrentPage(page);
   };
 
   const handleSwipeChange = (index: number) => {
-    setCurrentPage(index as NAVIGATION_PAGE);
+    if (index === NAVIGATION_PAGE.Announcements)
+      setCurrentPage(index as NAVIGATION_PAGE);
   };
 
   const Components: Record<NAVIGATION_PAGE, ReactNode> = {
@@ -62,7 +63,9 @@ export default function Home() {
           }}
         >
           {Object.keys(NAVIGATION_PAGE).map((key) => (
-            <SwipeContainer key={key}>{Components[Number(key) as NAVIGATION_PAGE]}</SwipeContainer>
+            <SwipeContainer key={key}>
+              {Components[Number(key) as NAVIGATION_PAGE]}
+            </SwipeContainer>
           ))}
         </SwipeableViews>
 
