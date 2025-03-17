@@ -10,17 +10,54 @@ import {
   CardContent,
   CardHeader,
   Container,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
 
 const Announcements = () => {
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const data = AnnouncementService.getAllAnnouncements().sort(
-      (a, b) => b.timestamp - a.timestamp
-    );
-    setAnnouncements(data);
+    const fetchAnnouncements = async () => {
+      try {
+        setLoading(true);
+        setError(null); // Reset error state before fetching
+        const data = await AnnouncementService.getAllAnnouncements();
+        setAnnouncements(data);
+      } catch {
+        setError("Failed to load announcements. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnnouncements();
   }, []);
+
+  if (loading) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100%"
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container maxWidth="sm" sx={{ mt: 4 }}>
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      </Container>
+    );
+  }
 
   return (
     <Container

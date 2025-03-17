@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from "uuid";
-import announcementsData from "../data/announcements.json";
 
 const MAX_ANNOUNCEMENTS = 100;
 
@@ -11,36 +10,29 @@ export interface Announcement {
 }
 
 export class AnnouncementService {
-  static getAllAnnouncements(
-    readFileSync?: (path: string, encoding: string) => string,
-    announcementsPath?: string
-  ): Announcement[] {
-    if (readFileSync && announcementsPath) {
-      // Node.js environment: Read from the file system
-      const data = readFileSync(announcementsPath, "utf8");
-      return JSON.parse(data);
-    } else {
-      // Browser environment: Use the imported JSON data
-      return announcementsData;
+  static async getAllAnnouncements(): Promise<Announcement[]> {
+    const basePath =
+      process.env.NODE_ENV === "production" ? "/stride-run-club" : "";
+    const response = await fetch(`${basePath}/data/announcements.json`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch announcements");
     }
+    return response.json();
   }
 
-  static addAnnouncement(
+  static async addAnnouncement(
     newAnnouncement: Omit<Announcement, "id" | "timestamp">,
     readFileSync: (path: string, encoding: string) => string,
     writeFileSync: (path: string, data: string) => void,
     announcementsPath: string
-  ): void {
+  ) {
     if (typeof window !== "undefined") {
       throw new Error(
         "addAnnouncement can only be used in a Node.js environment"
       );
     }
 
-    const announcements = this.getAllAnnouncements(
-      readFileSync,
-      announcementsPath
-    );
+    const announcements = await this.getAllAnnouncements();
 
     const newId = uuidv4();
     const timestamp = Date.now();
@@ -56,22 +48,19 @@ export class AnnouncementService {
     writeFileSync(announcementsPath, JSON.stringify(announcements, null, 2));
   }
 
-  static cleanOldAnnouncements(
+  static async cleanOldAnnouncements(
     days: number,
     readFileSync: (path: string, encoding: string) => string,
     writeFileSync: (path: string, data: string) => void,
     announcementsPath: string
-  ): void {
+  ) {
     if (typeof window !== "undefined") {
       throw new Error(
         "cleanOldAnnouncements can only be used in a Node.js environment"
       );
     }
 
-    const announcements = this.getAllAnnouncements(
-      readFileSync,
-      announcementsPath
-    );
+    const announcements = await this.getAllAnnouncements();
     const cutoffTimestamp = Date.now() - days * 24 * 60 * 60 * 1000; // cutoff timestamp
 
     // Filter announcements to keep only those within the cutoff timestamp
