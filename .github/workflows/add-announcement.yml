@@ -42,7 +42,7 @@ jobs:
         run: |
           npx ts-node ./scripts/addAnnouncement.ts
 
-      # Step 5: Commit and push changes
+      # Step 5: Commit and push changes and trigger deployment
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
@@ -50,18 +50,3 @@ jobs:
           git add public/data/announcements.json
           git commit -m "Add new announcement: ${{ inputs.title }}"
           git push origin ${{ github.ref_name }}
-
-      # Step 6: Trigger deployment
-      - name: Trigger Deployment
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const { owner, repo } = context.repo;
-            const workflow = 'deploy.yml'; // Replace with your deployment workflow filename
-            const ref = '${{ github.ref_name }}'; // The branch or tag to trigger the workflow on
-            await github.rest.actions.createWorkflowDispatch({
-              owner,
-              repo,
-              workflow_id: workflow,
-              ref,
-            });
