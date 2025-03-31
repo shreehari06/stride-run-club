@@ -1,0 +1,41 @@
+name: Add Announcement Workflow
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+    inputs:
+      title:
+        description: "Title of the announcement"
+        required: true
+        default: "Default Announcement Title"
+      content:
+        description: "Content of the announcement"
+        required: true
+        default: "Default Announcement Content"
+
+jobs:
+  add-announcement:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Add an announcement
+      - name: Add Announcement
+        env:
+          ANNOUNCEMENTS_PATH: "./public/data/announcements.json" # Path to announcements file
+          ANNOUNCEMENT_TITLE: ${{ inputs.title }}
+          ANNOUNCEMENT_CONTENT: ${{ inputs.content }}
+        run: |
+          node ./scripts/addAnnouncement.js
