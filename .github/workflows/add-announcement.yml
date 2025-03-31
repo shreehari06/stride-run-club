@@ -23,15 +23,27 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Debug: List files after checkout
+      - name: List files after checkout
+        run: ls -R
+
       # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
+      # Debug: List files after Node.js setup
+      - name: List files after Node.js setup
+        run: ls -R
+
       # Step 3: Install dependencies
       - name: Install dependencies
         run: yarn install
+
+      # Debug: List files after dependencies installation
+      - name: List files after dependencies installation
+        run: ls -R
 
       # Step 4: Add an announcement
       - name: Add Announcement
