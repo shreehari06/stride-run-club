@@ -1,6 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { AnnouncementService } from "../src/services/AnnouncementService";
+/* eslint-disable @typescript-eslint/no-require-imports */
+const fs = require("fs");
+const path = require("path");
+const { AnnouncementService } = require("../src/services/AnnouncementService");
 
 // Debug: List the contents of the current directory
 console.log("Current directory:", __dirname);

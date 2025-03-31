@@ -40,7 +40,7 @@ jobs:
           ANNOUNCEMENT_TITLE: ${{ inputs.title }}
           ANNOUNCEMENT_CONTENT: ${{ inputs.content }}
         run: |
-          NODE_OPTIONS="--loader ts-node/esm" npx ts-node ./scripts/addAnnouncement.ts
+          npx ts-node ./scripts/addAnnouncement.ts
 
       # Step 5: Commit and push changes
       - name: Commit and push changes
