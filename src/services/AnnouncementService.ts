@@ -48,7 +48,7 @@ export class AnnouncementService {
     const timestamp = Date.now();
     const announcement = { id: newId, timestamp, ...newAnnouncement };
 
-    announcements.push(announcement);
+    announcements.unshift(announcement);
 
     // Enforce MAX_ANNOUNCEMENTS limit
     if (announcements.length > MAX_ANNOUNCEMENTS) {

@@ -24,7 +24,9 @@ const Announcements = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await AnnouncementService.getAllAnnouncements();
+        const data = (await AnnouncementService.getAllAnnouncements()).sort(
+          (a, b) => b.timestamp - a.timestamp
+        );
         setAnnouncements(data);
       } catch {
         setError("Failed to load announcements. Please try again later.");
