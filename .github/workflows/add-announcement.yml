@@ -20,6 +20,8 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 2: Set up Node.js
       - name: Set up Node.js
@@ -38,4 +40,28 @@ jobs:
           ANNOUNCEMENT_TITLE: ${{ inputs.title }}
           ANNOUNCEMENT_CONTENT: ${{ inputs.content }}
         run: |
-          node ./scripts/addAnnouncement.js
+          node ./src/scripts/addAnnouncement.js
+
+      # Step 5: Commit and push changes
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/announcements.json
+          git commit -m "Add new announcement: ${{ inputs.title }}"
+          git push origin ${{ github.ref_name }}
+
+      # Step 6: Trigger deployment
+      - name: Trigger Deployment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const workflow = 'deploy.yml'; // Replace with your deployment workflow filename
+            const ref = '${{ github.ref_name }}';
+            await github.actions.createWorkflowDispatch({
+              owner,
+              repo,
+              workflow_id: workflow,
+              ref,
+            });
