@@ -54,6 +54,7 @@ try {
 
     await AnnouncementService.addAnnouncement(
       newAnnouncement,
+      fs.readFileSync,
       fs.writeFileSync,
       announcementsPath
     );

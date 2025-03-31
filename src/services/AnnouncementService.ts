@@ -30,6 +30,7 @@ export class AnnouncementService {
 
   static async addAnnouncement(
     newAnnouncement: Omit<Announcement, "id" | "timestamp">,
+    readFileSync: (path: string, encoding: string) => string,
     writeFileSync: (path: string, data: string) => void,
     announcementsPath: string
   ) {
@@ -39,7 +40,7 @@ export class AnnouncementService {
       );
     }
 
-    const announcements = await this.getAllAnnouncements();
+    const announcements = await this.getAllAnnouncements(readFileSync);
 
     const newId = uuidv4();
     const timestamp = Date.now();
@@ -67,7 +68,7 @@ export class AnnouncementService {
       );
     }
 
-    const announcements = await this.getAllAnnouncements();
+    const announcements = await this.getAllAnnouncements(readFileSync);
     const cutoffTimestamp = Date.now() - days * 24 * 60 * 60 * 1000; // cutoff timestamp
 
     // Filter announcements to keep only those within the cutoff timestamp
