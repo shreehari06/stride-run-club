@@ -1,4 +1,3 @@
-import { type PathOrFileDescriptor } from "fs";
 import { v4 as uuidv4 } from "uuid";
 
 const MAX_ANNOUNCEMENTS = 100;
@@ -23,7 +22,7 @@ export class AnnouncementService {
 
   static async addAnnouncement(
     newAnnouncement: Omit<Announcement, "id" | "timestamp">,
-    writeFileSync: (path: PathOrFileDescriptor, data: string) => void,
+    writeFileSync: (path: string, data: string) => void,
     announcementsPath: string
   ) {
     if (typeof window !== "undefined") {
