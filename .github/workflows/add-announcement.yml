@@ -40,7 +40,7 @@ jobs:
           ANNOUNCEMENT_TITLE: ${{ inputs.title }}
           ANNOUNCEMENT_CONTENT: ${{ inputs.content }}
         run: |
-          node ./src/scripts/addAnnouncement.js
+          node ./scripts/addAnnouncement.js
 
       # Step 5: Commit and push changes
       - name: Commit and push changes
