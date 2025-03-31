@@ -33,10 +33,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      # Debug: List files after dependencies installation
-      - name: List files after dependencies installation
-        run: ls -lR
-
       # Step 4: Add an announcement
       - name: Add Announcement
         env:
