@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { AnnouncementService } from "../src/services/AnnouncementService";
 
 // Debug: List the contents of the current directory
 console.log("Current directory:", __dirname);
@@ -15,11 +15,11 @@ try {
     fs.readdirSync(servicesPath)
   );
 } catch (err) {
-  console.error("Error reading src/services directory:", err.message);
+  console.error(
+    "Error reading src/services directory:",
+    (err as Error).message
+  );
 }
-
-// Import AnnouncementService
-const { AnnouncementService } = require("../src/services/AnnouncementService");
 
 // Debug: List the contents of the public/data directory
 const announcementsPath =
@@ -30,7 +30,7 @@ console.log("Resolved path for public/data:", dataPath);
 try {
   console.log("Contents of public/data directory:", fs.readdirSync(dataPath));
 } catch (err) {
-  console.error("Error reading public/data directory:", err.message);
+  console.error("Error reading public/data directory:", (err as Error).message);
 }
 
 (async () => {
@@ -53,14 +53,13 @@ try {
 
     await AnnouncementService.addAnnouncement(
       newAnnouncement,
-      fs.readFileSync,
       fs.writeFileSync,
       announcementsPath
     );
 
     console.log("Announcement added successfully.");
   } catch (error) {
-    console.error("Error adding announcement:", error);
+    console.error("Error adding announcement:", (error as Error).message);
     process.exit(1);
   }
 })();
