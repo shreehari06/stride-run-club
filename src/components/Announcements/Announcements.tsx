@@ -23,7 +23,7 @@ const Announcements = () => {
     const fetchAnnouncements = async () => {
       try {
         setLoading(true);
-        setError(null); // Reset error state before fetching
+        setError(null);
         const data = await AnnouncementService.getAllAnnouncements();
         setAnnouncements(data);
       } catch {
