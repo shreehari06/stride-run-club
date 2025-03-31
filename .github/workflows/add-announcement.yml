@@ -58,8 +58,8 @@ jobs:
           script: |
             const { owner, repo } = context.repo;
             const workflow = 'deploy.yml'; // Replace with your deployment workflow filename
-            const ref = '${{ github.ref_name }}';
-            await github.actions.createWorkflowDispatch({
+            const ref = '${{ github.ref_name }}'; // The branch or tag to trigger the workflow on
+            await github.rest.actions.createWorkflowDispatch({
               owner,
               repo,
               workflow_id: workflow,
