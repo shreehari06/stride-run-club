@@ -1,10 +1,9 @@
+import { PATH_PREFIX } from "@/path";
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === "production";
-
 const nextConfig: NextConfig = {
-  basePath: isProd ? "/stride-run-club" : "",
-  assetPrefix: isProd ? "/stride-run-club" : "",
+  basePath: PATH_PREFIX,
+  assetPrefix: PATH_PREFIX,
   output: "export",
   images: {
     unoptimized: true,
