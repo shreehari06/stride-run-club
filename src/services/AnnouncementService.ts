@@ -1,4 +1,3 @@
-import { PATH_PREFIX } from "@/path";
 import { v4 as uuidv4 } from "uuid";
 
 const MAX_ANNOUNCEMENTS = 100;
@@ -14,13 +13,15 @@ export class AnnouncementService {
   static async getAllAnnouncements(
     readFileSync?: (path: string, encoding: string) => string
   ): Promise<Announcement[]> {
+    const basePath =
+      process.env.NODE_ENV === "production" ? "/stride-run-club" : "";
     if (readFileSync) {
-      const announcementsPath = PATH_PREFIX + "/data/announcements.json";
+      const announcementsPath = basePath + "/data/announcements.json";
       const data = readFileSync(announcementsPath, "utf-8");
       return JSON.parse(data);
     }
 
-    const response = await fetch(`${PATH_PREFIX}/data/announcements.json`);
+    const response = await fetch(`${basePath}/data/announcements.json`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch announcements");
