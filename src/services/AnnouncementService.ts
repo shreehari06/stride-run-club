@@ -15,8 +15,9 @@ export class AnnouncementService {
   ): Promise<Announcement[]> {
     const basePath =
       process.env.NODE_ENV === "production" ? "/stride-run-club" : "";
+
     if (readFileSync) {
-      const announcementsPath = basePath + "/data/announcements.json";
+      const announcementsPath = basePath + "public/data/announcements.json";
       const data = readFileSync(announcementsPath, "utf-8");
       return JSON.parse(data);
     }
