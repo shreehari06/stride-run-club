@@ -10,6 +10,7 @@ on:
   workflow_run:
     workflows:
       - Add Announcement Workflow # Name of the workflow in add-announcement.yml
+      - Clean Old Announcements Workflow # Name of the workflow in clean-old-announcements.yml
     types:
       - completed
 

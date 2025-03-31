@@ -1,0 +1,47 @@
+name: Clean Old Announcements Workflow
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+    inputs:
+      cutoff-days:
+        description: "Number of days to keep announcements"
+        required: false
+        default: "30"
+
+jobs:
+  add-announcement:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: yarn install
+
+      # Step 4: Add an announcement
+      - name: Add Announcement
+        env:
+          ANNOUNCEMENTS_PATH: "./public/data/announcements.json" # Path to announcements file
+          CLEANUP_CUTOFF_DAYS: ${{ inputs.cutoff-days }}
+        run: |
+          npx ts-node ./scripts/cleanOldAnnouncements.ts
+
+      # Step 5: Commit and push changes and trigger deployment
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/announcements.json
+          git commit -m "Add new announcement: ${{ inputs.title }}"
+          git push origin ${{ github.ref_name }}
