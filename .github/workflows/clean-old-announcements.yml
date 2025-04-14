@@ -29,8 +29,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      # Step 4: Add an announcement
-      - name: Add Announcement
+      # Step 4: Clean up announcements
+      - name: Clean up Announcements
         env:
           ANNOUNCEMENTS_PATH: "./public/data/announcements.json" # Path to announcements file
           CLEANUP_CUTOFF_DAYS: ${{ inputs.cutoff-days }}
