@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Box, Stack, Typography, Button, Fab } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { theme } from "../../theme"; // Import the theme
@@ -9,6 +9,13 @@ const Landing = ({
 }: {
   setPage: Dispatch<SetStateAction<NAVIGATION_PAGE>>;
 }) => {
+  const [isFlashing, setIsFlashing] = useState(false);
+
+  const handleBackgroundClick = () => {
+    setIsFlashing(true);
+    setTimeout(() => setIsFlashing(false), 300);
+  };
+
   return (
     <Box
       sx={{
@@ -24,6 +31,7 @@ const Landing = ({
         overflow: "hidden",
         fontFamily: "'Poppins', sans-serif",
       }}
+      onClick={handleBackgroundClick} // Add click handler for background
     >
       {/* Overlay */}
       <Box
@@ -88,14 +96,15 @@ const Landing = ({
       {/* Floating Instagram Button */}
       <Fab
         color="secondary"
-        href="https://instagram.com/stride"
+        href="https://instagram.com/stride_runclub_bengaluru"
         target="_blank"
         sx={{
           position: "fixed",
           bottom: 16,
           right: 16,
           zIndex: 3,
-          backgroundColor: "#E1306C",
+          backgroundColor: isFlashing ? "#FF69B4" : "#E1306C", // Flashing effect
+          transition: "background-color 0.3s ease", // Smooth transition
           "&:hover": {
             backgroundColor: "#C13584",
           },
