@@ -5,11 +5,11 @@ import { config } from "@/config";
 
 const Registration = () => {
   return (
-    <Box sx={{ overflow: "hidden" }}>
+    <Box sx={{ height: "100%", overflow: "hidden" }}>
       <iframe
         src={config.formLink}
         width="100%"
-        height="1000"
+        height="100%"
         title="Registration Form"
         style={{ border: 0 }}
         allowFullScreen
