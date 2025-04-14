@@ -3,6 +3,7 @@ import { Box, Stack, Typography, Button, Fab } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { theme } from "../../theme"; // Import the theme
 import { NAVIGATION_PAGE } from "../Navigation";
+import { PATH_PREFIX } from "@/path";
 
 const Landing = ({
   setPage,
@@ -24,7 +25,7 @@ const Landing = ({
         flexDirection: "column",
         alignItems: "center",
         textAlign: "center",
-        backgroundImage: "url('/content/splash.jpeg')",
+        backgroundImage: `url('${PATH_PREFIX}/content/splash.jpeg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         position: "relative",
