@@ -62,7 +62,7 @@ const Landing = ({
         }}
       >
         <Typography
-          variant="h3"
+          variant="h4"
           sx={{
             marginBottom: 2,
             color: theme.palette.primary.main,
