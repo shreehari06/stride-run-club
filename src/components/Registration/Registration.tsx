@@ -1,7 +1,21 @@
+import { Box } from "@mui/material";
 import React from "react";
 
+import { config } from "@/config";
+
 const Registration = () => {
-  return <div>Registration</div>;
+  return (
+    <Box sx={{ overflow: "hidden" }}>
+      <iframe
+        src={config.formLink}
+        width="100%"
+        height="1000"
+        title="Registration Form"
+        style={{ border: 0 }}
+        allowFullScreen
+      ></iframe>
+    </Box>
+  );
 };
 
 export default Registration;
