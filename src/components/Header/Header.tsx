@@ -2,8 +2,6 @@ import { agbalumoFont } from "@/fonts";
 import { STRINGS } from "@/strings";
 import { Box, Button } from "@mui/material";
 import React from "react";
-
-import Image from "next/image";
 import { PATH_PREFIX } from "@/path";
 
 const Header = ({ onClick }: { onClick?: () => void }) => {
@@ -24,11 +22,12 @@ const Header = ({ onClick }: { onClick?: () => void }) => {
       className={agbalumoFont.className}
       onClick={onClick}
     >
-      <Image
+      <img
         src={`${PATH_PREFIX}/stride.jpeg`}
         width={36}
         height={36}
         alt="Stride logo"
+        style={{ objectFit: "cover" }}
       />
       <Box sx={{ typography: "title" }}> {STRINGS.title}</Box>
       <Button variant="text">{STRINGS.buttons.joinUs}</Button>

@@ -1,7 +1,8 @@
-import { Agbalumo } from "next/font/google";
+// In Vite, we'll use CSS classes instead of Next.js font system
+export const agbalumoFont = {
+  className: "font-agbalumo",
+};
 
-export const agbalumoFont = Agbalumo({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-agbalumo",
-});
+// Add this import to main.tsx or create a separate CSS file with:
+// @import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+// .font-agbalumo { font-family: 'Agbalumo', cursive; }
