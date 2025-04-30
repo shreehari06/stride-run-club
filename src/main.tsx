@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import "./app/globals.css";
+import "./globals.css";
 import "./fontStyles.css";
 
 console.log("Main.tsx is executing");
