@@ -34,8 +34,6 @@ export interface Chat {
   messages: ChatMessage[];
 }
 
-export type PageType = "home" | "events" | "chat" | "leaderboard" | "profile";
-
 export interface AuthContextType {
   user: User | null;
   loading: boolean;
