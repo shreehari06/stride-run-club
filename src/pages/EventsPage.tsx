@@ -6,11 +6,9 @@ import {
   VStack,
   HStack,
   Card,
-  CardBody,
   Badge,
   Button,
   SimpleGrid,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { FiMapPin, FiClock, FiUsers } from "react-icons/fi";
 
@@ -49,9 +47,6 @@ const mockEvents = [
 ];
 
 export function EventsPage() {
-  const bg = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
-
   const getEventTypeColor = (type: string) => {
     switch (type) {
       case "run":
@@ -77,7 +72,7 @@ export function EventsPage() {
 
   return (
     <Container maxW="container.lg" py={6} h="100%" overflowY="auto">
-      <VStack spacing={6} align="stretch">
+      <VStack gap={6} align="stretch">
         {/* Header */}
         <Box>
           <Heading size="xl" mb={2}>
@@ -89,14 +84,20 @@ export function EventsPage() {
         </Box>
 
         {/* Events Grid */}
-        <SimpleGrid columns={1} spacing={4}>
+        <SimpleGrid columns={1} gap={4}>
           {mockEvents.map((event) => (
-            <Card key={event.id} bg={bg} borderColor={borderColor} shadow="md">
-              <CardBody>
-                <VStack align="stretch" spacing={4}>
+            <Card.Root
+              key={event.id}
+              bg="white"
+              borderColor="gray.200"
+              _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+              shadow="md"
+            >
+              <Card.Body>
+                <VStack align="stretch" gap={4}>
                   {/* Event Header */}
                   <HStack justify="space-between" align="start">
-                    <VStack align="start" spacing={1} flex={1}>
+                    <VStack align="start" gap={1} flex={1}>
                       <Heading size="md">{event.title}</Heading>
                       <Text
                         fontSize="sm"
@@ -106,13 +107,13 @@ export function EventsPage() {
                         {event.description}
                       </Text>
                     </VStack>
-                    <Badge colorScheme={getEventTypeColor(event.type)}>
+                    <Badge colorPalette={getEventTypeColor(event.type)}>
                       {event.type.replace("-", " ")}
                     </Badge>
                   </HStack>
 
                   {/* Event Details */}
-                  <VStack align="stretch" spacing={2}>
+                  <VStack align="stretch" gap={2}>
                     <HStack>
                       <FiClock />
                       <Text fontSize="sm">{formatDate(event.date)}</Text>
@@ -132,9 +133,9 @@ export function EventsPage() {
 
                   {/* Action Button */}
                   <Button
-                    colorScheme="blue"
+                    colorPalette="blue"
                     size="sm"
-                    isDisabled={
+                    disabled={
                       event.registrations.length >= event.maxParticipants
                     }
                   >
@@ -143,13 +144,13 @@ export function EventsPage() {
                       : "Register"}
                   </Button>
                 </VStack>
-              </CardBody>
-            </Card>
+              </Card.Body>
+            </Card.Root>
           ))}
         </SimpleGrid>
 
         {/* Create Event Button (for admins) */}
-        <Button colorScheme="green" size="lg" w="100%" variant="outline">
+        <Button colorPalette="green" size="lg" w="100%" variant="outline">
           Create New Event
         </Button>
       </VStack>

@@ -6,13 +6,11 @@ import {
   VStack,
   HStack,
   Card,
-  CardBody,
   Badge,
   Button,
   Input,
   InputGroup,
   InputRightElement,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { FiSend, FiMessageCircle } from "react-icons/fi";
 import { useState } from "react";
@@ -44,8 +42,6 @@ const mockChats = [
 export function ChatPage() {
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [message, setMessage] = useState("");
-  const bg = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString("en-IN", {
@@ -75,7 +71,13 @@ export function ChatPage() {
         flexDirection="column"
       >
         {/* Chat Header */}
-        <HStack mb={4} pb={4} borderBottom="1px" borderColor={borderColor}>
+        <HStack
+          mb={4}
+          pb={4}
+          borderBottom="1px"
+          borderColor="gray.200"
+          _dark={{ borderColor: "gray.700" }}
+        >
           <Button
             variant="ghost"
             size="sm"
@@ -83,7 +85,7 @@ export function ChatPage() {
           >
             ← Back
           </Button>
-          <VStack align="start" spacing={0} flex={1}>
+          <VStack align="start" gap={0} flex={1}>
             <Heading size="md">{chat?.eventName}</Heading>
             <Text fontSize="sm" color="gray.600">
               5 participants
@@ -92,14 +94,7 @@ export function ChatPage() {
         </HStack>
 
         {/* Messages Area */}
-        <VStack
-          flex={1}
-          spacing={3}
-          align="stretch"
-          overflowY="auto"
-          mb={4}
-          px={2}
-        >
+        <VStack flex={1} gap={3} align="stretch" overflowY="auto" mb={4} px={2}>
           {/* Mock messages */}
           <HStack>
             <Box
@@ -163,9 +158,9 @@ export function ChatPage() {
           <InputRightElement>
             <Button
               size="sm"
-              colorScheme="blue"
+              colorPalette="blue"
               onClick={handleSendMessage}
-              isDisabled={!message.trim()}
+              disabled={!message.trim()}
             >
               <FiSend />
             </Button>
@@ -178,7 +173,7 @@ export function ChatPage() {
   // Chat List View
   return (
     <Container maxW="container.lg" py={6} h="100%" overflowY="auto">
-      <VStack spacing={6} align="stretch">
+      <VStack gap={6} align="stretch">
         {/* Header */}
         <Box>
           <Heading size="xl" mb={2}>
@@ -190,19 +185,21 @@ export function ChatPage() {
         </Box>
 
         {/* Chat List */}
-        <VStack spacing={3} align="stretch">
+        <VStack gap={3} align="stretch">
           {mockChats.map((chat) => (
-            <Card
+            <Card.Root
               key={chat.eventId}
-              bg={bg}
-              borderColor={borderColor}
+              bg="white"
+              _dark={{ bg: "gray.800" }}
+              borderColor="gray.200"
+              _dark={{ borderColor: "gray.700" }}
               cursor="pointer"
               _hover={{ shadow: "md" }}
               onClick={() => setSelectedChat(chat.eventId)}
             >
-              <CardBody>
+              <Card.Body>
                 <HStack justify="space-between" align="start">
-                  <HStack spacing={3} flex={1}>
+                  <HStack gap={3} flex={1}>
                     <Box
                       bg="blue.100"
                       _dark={{ bg: "blue.900" }}
@@ -211,7 +208,7 @@ export function ChatPage() {
                     >
                       <FiMessageCircle color="#3182ce" />
                     </Box>
-                    <VStack align="start" spacing={1} flex={1}>
+                    <VStack align="start" gap={1} flex={1}>
                       <Text fontWeight="bold" fontSize="md">
                         {chat.eventName}
                       </Text>
@@ -225,19 +222,19 @@ export function ChatPage() {
                     </VStack>
                   </HStack>
 
-                  <VStack spacing={1} align="end">
+                  <VStack gap={1} align="end">
                     <Text fontSize="xs" color="gray.500">
                       {formatTime(chat.timestamp)}
                     </Text>
                     {chat.unreadCount > 0 && (
-                      <Badge colorScheme="red" borderRadius="full">
+                      <Badge colorPalette="red" borderRadius="full">
                         {chat.unreadCount}
                       </Badge>
                     )}
                   </VStack>
                 </HStack>
-              </CardBody>
-            </Card>
+              </Card.Body>
+            </Card.Root>
           ))}
         </VStack>
 

@@ -6,11 +6,9 @@ import {
   VStack,
   HStack,
   Card,
-  CardBody,
   Badge,
   Avatar,
   SimpleGrid,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { FiTrophy, FiActivity, FiMapPin } from "react-icons/fi";
 
@@ -65,9 +63,6 @@ const mockStats = {
 };
 
 export function LeaderboardPage() {
-  const bg = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
-
   const getRankColor = (rank: number) => {
     switch (rank) {
       case 1:
@@ -87,7 +82,7 @@ export function LeaderboardPage() {
 
   return (
     <Container maxW="container.lg" py={6} h="100%" overflowY="auto">
-      <VStack spacing={6} align="stretch">
+      <VStack gap={6} align="stretch">
         {/* Header */}
         <Box>
           <Heading size="xl" mb={2}>
@@ -99,9 +94,13 @@ export function LeaderboardPage() {
         </Box>
 
         {/* Stats Cards */}
-        <SimpleGrid columns={2} spacing={4}>
-          <Card bg={bg} borderColor={borderColor}>
-            <CardBody textAlign="center">
+        <SimpleGrid columns={2} gap={4}>
+          <Card.Root
+            bg="white"
+            borderColor="gray.200"
+            _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+          >
+            <Card.Body textAlign="center">
               <FiActivity size={24} color="#3182ce" />
               <Text fontSize="2xl" fontWeight="bold" mt={2}>
                 {mockStats.totalRuns}
@@ -109,11 +108,15 @@ export function LeaderboardPage() {
               <Text fontSize="sm" color="gray.600">
                 Total Runs
               </Text>
-            </CardBody>
-          </Card>
+            </Card.Body>
+          </Card.Root>
 
-          <Card bg={bg} borderColor={borderColor}>
-            <CardBody textAlign="center">
+          <Card.Root
+            bg="white"
+            borderColor="gray.200"
+            _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+          >
+            <Card.Body textAlign="center">
               <FiMapPin size={24} color="#3182ce" />
               <Text fontSize="2xl" fontWeight="bold" mt={2}>
                 {mockStats.totalDistance.toFixed(0)}km
@@ -121,8 +124,8 @@ export function LeaderboardPage() {
               <Text fontSize="sm" color="gray.600">
                 Total Distance
               </Text>
-            </CardBody>
-          </Card>
+            </Card.Body>
+          </Card.Root>
         </SimpleGrid>
 
         {/* Top 3 Podium */}
@@ -130,9 +133,9 @@ export function LeaderboardPage() {
           <Heading size="md" mb={4}>
             Top Performers
           </Heading>
-          <HStack spacing={4} justify="center" mb={6}>
+          <HStack gap={4} justify="center" mb={6}>
             {mockLeaderboard.slice(0, 3).map((runner, index) => (
-              <VStack key={runner.id} spacing={2}>
+              <VStack key={runner.id} gap={2}>
                 <Box position="relative">
                   <Avatar
                     size="lg"
@@ -165,11 +168,16 @@ export function LeaderboardPage() {
           <Heading size="md" mb={4}>
             All Runners
           </Heading>
-          <VStack spacing={3} align="stretch">
+          <VStack gap={3} align="stretch">
             {mockLeaderboard.map((runner) => (
-              <Card key={runner.id} bg={bg} borderColor={borderColor}>
-                <CardBody>
-                  <HStack spacing={4} align="center">
+              <Card.Root
+                key={runner.id}
+                bg="white"
+                borderColor="gray.200"
+                _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+              >
+                <Card.Body>
+                  <HStack gap={4} align="center">
                     {/* Rank */}
                     <Box
                       bg={
@@ -199,7 +207,7 @@ export function LeaderboardPage() {
                     {/* Avatar and Name */}
                     <HStack flex={1}>
                       <Avatar size="md" name={runner.name} />
-                      <VStack align="start" spacing={0}>
+                      <VStack align="start" gap={0}>
                         <Text fontWeight="bold">{runner.name}</Text>
                         <Text fontSize="sm" color="gray.600">
                           {runner.runsCompleted} runs completed
@@ -208,7 +216,7 @@ export function LeaderboardPage() {
                     </HStack>
 
                     {/* Distance */}
-                    <VStack align="end" spacing={0}>
+                    <VStack align="end" gap={0}>
                       <Text fontWeight="bold" fontSize="lg">
                         {runner.totalDistance.toFixed(1)} km
                       </Text>
@@ -217,17 +225,21 @@ export function LeaderboardPage() {
                       </Text>
                     </VStack>
                   </HStack>
-                </CardBody>
-              </Card>
+                </Card.Body>
+              </Card.Root>
             ))}
           </VStack>
         </Box>
 
         {/* Your Rank Card */}
-        <Card bg="blue.50" _dark={{ bg: "blue.900" }} borderColor="blue.200">
-          <CardBody>
+        <Card.Root
+          bg="blue.50"
+          _dark={{ bg: "blue.900" }}
+          borderColor="blue.200"
+        >
+          <Card.Body>
             <HStack justify="space-between">
-              <VStack align="start" spacing={1}>
+              <VStack align="start" gap={1}>
                 <Text
                   fontWeight="bold"
                   color="blue.600"
@@ -239,7 +251,7 @@ export function LeaderboardPage() {
                   Keep running to climb the leaderboard!
                 </Text>
               </VStack>
-              <VStack align="end" spacing={0}>
+              <VStack align="end" gap={0}>
                 <Text
                   fontSize="2xl"
                   fontWeight="bold"
@@ -253,8 +265,8 @@ export function LeaderboardPage() {
                 </Text>
               </VStack>
             </HStack>
-          </CardBody>
-        </Card>
+          </Card.Body>
+        </Card.Root>
       </VStack>
     </Container>
   );

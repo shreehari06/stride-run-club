@@ -1,11 +1,4 @@
-import {
-  Box,
-  HStack,
-  VStack,
-  Icon,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, HStack, VStack, Icon, Text } from "@chakra-ui/react";
 import {
   FiHome,
   FiCalendar,
@@ -37,20 +30,16 @@ export function BottomNavigation({
   currentPage,
   setCurrentPage,
 }: BottomNavigationProps) {
-  const bg = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
-  const activeColor = useColorModeValue("blue.500", "blue.300");
-  const inactiveColor = useColorModeValue("gray.500", "gray.400");
-
   return (
     <Box
       position="fixed"
       bottom={0}
       left={0}
       right={0}
-      bg={bg}
+      bg="white"
       borderTop="1px"
-      borderColor={borderColor}
+      borderColor="gray.200"
+      _dark={{ bg: "gray.800", borderColor: "gray.700" }}
       px={2}
       py={2}
       zIndex={1000}
@@ -60,11 +49,14 @@ export function BottomNavigation({
         {navItems.map((item) => (
           <VStack
             key={item.label}
-            spacing={1}
+            gap={1}
             cursor="pointer"
             onClick={() => setCurrentPage(item.index)}
             opacity={currentPage === item.index ? 1 : 0.7}
-            color={currentPage === item.index ? activeColor : inactiveColor}
+            color={currentPage === item.index ? "blue.500" : "gray.500"}
+            _dark={{
+              color: currentPage === item.index ? "blue.300" : "gray.400",
+            }}
             _hover={{ opacity: 1 }}
             transition="all 0.2s"
             py={2}

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { ChakraProvider, Box } from "@chakra-ui/react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ChakraProvider, Box, defaultSystem } from "@chakra-ui/react";
 import { BottomNavigation } from "./components/BottomNavigation";
 import { SwipeablePages } from "./components/SwipeablePages";
 import { HomePage } from "./pages/HomePage";
@@ -8,7 +7,6 @@ import { EventsPage } from "./pages/EventsPage";
 import { ChatPage } from "./pages/ChatPage";
 import { LeaderboardPage } from "./pages/LeaderboardPage";
 import { ProfilePage } from "./pages/ProfilePage";
-import { PageType } from "./types";
 
 const pages = [
   { key: "home", component: HomePage },
@@ -22,7 +20,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   return (
-    <ChakraProvider>
+    <ChakraProvider value={defaultSystem}>
       <Box minH="100vh" bg="gray.50" _dark={{ bg: "gray.900" }}>
         {/* Main content area - account for bottom nav */}
         <Box pb="80px" h="100vh" overflow="hidden">

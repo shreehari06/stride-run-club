@@ -6,20 +6,15 @@ import {
   VStack,
   HStack,
   Card,
-  CardBody,
   Badge,
   Button,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { FiActivity, FiCalendar, FiUsers } from "react-icons/fi";
 
 export function HomePage() {
-  const bg = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
-
   return (
     <Container maxW="container.lg" py={6} h="100%" overflowY="auto">
-      <VStack spacing={6} align="stretch">
+      <VStack gap={6} align="stretch">
         {/* Welcome Header */}
         <Box textAlign="center" py={8}>
           <Heading size="xl" mb={4} color="blue.500">
@@ -31,9 +26,14 @@ export function HomePage() {
         </Box>
 
         {/* Quick Stats */}
-        <HStack spacing={4} justify="space-between">
-          <Card bg={bg} borderColor={borderColor} flex={1}>
-            <CardBody textAlign="center">
+        <HStack gap={4} justify="space-between">
+          <Card.Root
+            bg="white"
+            borderColor="gray.200"
+            _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            flex={1}
+          >
+            <Card.Body textAlign="center">
               <FiActivity size={24} color="#3182ce" />
               <Text fontSize="2xl" fontWeight="bold" mt={2}>
                 12
@@ -41,11 +41,16 @@ export function HomePage() {
               <Text fontSize="sm" color="gray.600">
                 Runs Completed
               </Text>
-            </CardBody>
-          </Card>
+            </Card.Body>
+          </Card.Root>
 
-          <Card bg={bg} borderColor={borderColor} flex={1}>
-            <CardBody textAlign="center">
+          <Card.Root
+            bg="white"
+            borderColor="gray.200"
+            _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            flex={1}
+          >
+            <Card.Body textAlign="center">
               <FiUsers size={24} color="#3182ce" />
               <Text fontSize="2xl" fontWeight="bold" mt={2}>
                 156
@@ -53,11 +58,16 @@ export function HomePage() {
               <Text fontSize="sm" color="gray.600">
                 Members
               </Text>
-            </CardBody>
-          </Card>
+            </Card.Body>
+          </Card.Root>
 
-          <Card bg={bg} borderColor={borderColor} flex={1}>
-            <CardBody textAlign="center">
+          <Card.Root
+            bg="white"
+            borderColor="gray.200"
+            _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            flex={1}
+          >
+            <Card.Body textAlign="center">
               <FiCalendar size={24} color="#3182ce" />
               <Text fontSize="2xl" fontWeight="bold" mt={2}>
                 3
@@ -65,8 +75,8 @@ export function HomePage() {
               <Text fontSize="sm" color="gray.600">
                 Upcoming
               </Text>
-            </CardBody>
-          </Card>
+            </Card.Body>
+          </Card.Root>
         </HStack>
 
         {/* Recent Activity */}
@@ -74,34 +84,42 @@ export function HomePage() {
           <Heading size="md" mb={4}>
             Recent Activity
           </Heading>
-          <VStack spacing={3} align="stretch">
-            <Card bg={bg} borderColor={borderColor}>
-              <CardBody>
+          <VStack gap={3} align="stretch">
+            <Card.Root
+              bg="white"
+              borderColor="gray.200"
+              _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            >
+              <Card.Body>
                 <HStack justify="space-between">
-                  <VStack align="start" spacing={1}>
+                  <VStack align="start" gap={1}>
                     <Text fontWeight="bold">Morning Run at Cubbon Park</Text>
                     <Text fontSize="sm" color="gray.600">
                       23 runners participated
                     </Text>
                   </VStack>
-                  <Badge colorScheme="green">Completed</Badge>
+                  <Badge colorPalette="green">Completed</Badge>
                 </HStack>
-              </CardBody>
-            </Card>
+              </Card.Body>
+            </Card.Root>
 
-            <Card bg={bg} borderColor={borderColor}>
-              <CardBody>
+            <Card.Root
+              bg="white"
+              borderColor="gray.200"
+              _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            >
+              <Card.Body>
                 <HStack justify="space-between">
-                  <VStack align="start" spacing={1}>
+                  <VStack align="start" gap={1}>
                     <Text fontWeight="bold">Lake Hopping Adventure</Text>
                     <Text fontSize="sm" color="gray.600">
                       This Saturday 6:00 AM
                     </Text>
                   </VStack>
-                  <Badge colorScheme="blue">Upcoming</Badge>
+                  <Badge colorPalette="blue">Upcoming</Badge>
                 </HStack>
-              </CardBody>
-            </Card>
+              </Card.Body>
+            </Card.Root>
           </VStack>
         </Box>
 
@@ -110,8 +128,8 @@ export function HomePage() {
           <Heading size="md" mb={4}>
             Quick Actions
           </Heading>
-          <VStack spacing={3}>
-            <Button colorScheme="blue" size="lg" w="100%">
+          <VStack gap={3}>
+            <Button colorPalette="blue" size="lg" w="100%">
               Join Next Run
             </Button>
             <Button variant="outline" size="lg" w="100%">

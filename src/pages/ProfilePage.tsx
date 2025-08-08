@@ -6,12 +6,10 @@ import {
   VStack,
   HStack,
   Card,
-  CardBody,
   Button,
   Avatar,
   Badge,
   SimpleGrid,
-  useColorModeValue,
   useColorMode,
   IconButton,
   Divider,
@@ -45,8 +43,6 @@ const mockUser = {
 
 export function ProfilePage() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue("white", "gray.800");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
 
   const formatJoinDate = (date: Date) => {
     return date.toLocaleDateString("en-IN", {
@@ -57,7 +53,7 @@ export function ProfilePage() {
 
   return (
     <Container maxW="container.lg" py={6} h="100%" overflowY="auto">
-      <VStack spacing={6} align="stretch">
+      <VStack gap={6} align="stretch">
         {/* Header with Theme Toggle */}
         <HStack justify="space-between" align="center">
           <Heading size="xl">Profile</Heading>
@@ -70,9 +66,13 @@ export function ProfilePage() {
         </HStack>
 
         {/* Profile Card */}
-        <Card bg={bg} borderColor={borderColor}>
-          <CardBody>
-            <VStack spacing={4} align="center">
+        <Card.Root
+          bg="white"
+          borderColor="gray.200"
+          _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+        >
+          <Card.Body>
+            <VStack gap={4} align="center">
               {/* Avatar and Basic Info */}
               <Box position="relative">
                 <Avatar
@@ -88,16 +88,16 @@ export function ProfilePage() {
                   bottom={0}
                   right={0}
                   borderRadius="full"
-                  colorScheme="blue"
+                  colorPalette="blue"
                 />
               </Box>
 
-              <VStack spacing={1} textAlign="center">
+              <VStack gap={1} textAlign="center">
                 <Heading size="lg">{mockUser.name}</Heading>
                 <Text color="gray.600" _dark={{ color: "gray.300" }}>
                   {mockUser.email}
                 </Text>
-                <Badge colorScheme="blue" variant="outline">
+                <Badge colorPalette="blue" variant="outline">
                   {mockUser.role}
                 </Badge>
               </VStack>
@@ -119,17 +119,21 @@ export function ProfilePage() {
                 Member since {formatJoinDate(mockUser.joinedAt)}
               </Text>
             </VStack>
-          </CardBody>
-        </Card>
+          </Card.Body>
+        </Card.Root>
 
         {/* Stats Grid */}
         <Box>
           <Heading size="md" mb={4}>
             Your Stats
           </Heading>
-          <SimpleGrid columns={2} spacing={4}>
-            <Card bg={bg} borderColor={borderColor}>
-              <CardBody textAlign="center">
+          <SimpleGrid columns={2} gap={4}>
+            <Card.Root
+              bg="white"
+              borderColor="gray.200"
+              _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            >
+              <Card.Body textAlign="center">
                 <FiActivity size={24} color="#3182ce" />
                 <Text fontSize="2xl" fontWeight="bold" mt={2}>
                   {mockUser.stats.runsCompleted}
@@ -137,11 +141,15 @@ export function ProfilePage() {
                 <Text fontSize="sm" color="gray.600">
                   Runs Completed
                 </Text>
-              </CardBody>
-            </Card>
+              </Card.Body>
+            </Card.Root>
 
-            <Card bg={bg} borderColor={borderColor}>
-              <CardBody textAlign="center">
+            <Card.Root
+              bg="white"
+              borderColor="gray.200"
+              _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            >
+              <Card.Body textAlign="center">
                 <FiMapPin size={24} color="#3182ce" />
                 <Text fontSize="2xl" fontWeight="bold" mt={2}>
                   {mockUser.stats.totalDistance.toFixed(1)}km
@@ -149,11 +157,15 @@ export function ProfilePage() {
                 <Text fontSize="sm" color="gray.600">
                   Total Distance
                 </Text>
-              </CardBody>
-            </Card>
+              </Card.Body>
+            </Card.Root>
 
-            <Card bg={bg} borderColor={borderColor}>
-              <CardBody textAlign="center">
+            <Card.Root
+              bg="white"
+              borderColor="gray.200"
+              _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            >
+              <Card.Body textAlign="center">
                 <FiCalendar size={24} color="#3182ce" />
                 <Text fontSize="2xl" fontWeight="bold" mt={2}>
                   {mockUser.stats.currentStreak}
@@ -161,19 +173,23 @@ export function ProfilePage() {
                 <Text fontSize="sm" color="gray.600">
                   Current Streak
                 </Text>
-              </CardBody>
-            </Card>
+              </Card.Body>
+            </Card.Root>
 
-            <Card bg={bg} borderColor={borderColor}>
-              <CardBody textAlign="center">
+            <Card.Root
+              bg="white"
+              borderColor="gray.200"
+              _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+            >
+              <Card.Body textAlign="center">
                 <Text fontSize="2xl" fontWeight="bold" mt={2}>
                   {mockUser.stats.eventsHosted}
                 </Text>
                 <Text fontSize="sm" color="gray.600">
                   Events Hosted
                 </Text>
-              </CardBody>
-            </Card>
+              </Card.Body>
+            </Card.Root>
           </SimpleGrid>
         </Box>
 
@@ -182,9 +198,13 @@ export function ProfilePage() {
           <Heading size="md" mb={4}>
             Contact Information
           </Heading>
-          <Card bg={bg} borderColor={borderColor}>
-            <CardBody>
-              <VStack spacing={3} align="stretch">
+          <Card.Root
+            bg="white"
+            borderColor="gray.200"
+            _dark={{ bg: "gray.800", borderColor: "gray.700" }}
+          >
+            <Card.Body>
+              <VStack gap={3} align="stretch">
                 <HStack justify="space-between">
                   <Text fontWeight="medium">Email</Text>
                   <Text color="gray.600" _dark={{ color: "gray.300" }}>
@@ -199,13 +219,13 @@ export function ProfilePage() {
                   </Text>
                 </HStack>
               </VStack>
-            </CardBody>
-          </Card>
+            </Card.Body>
+          </Card.Root>
         </Box>
 
         {/* Action Buttons */}
-        <VStack spacing={3}>
-          <Button leftIcon={<FiEdit3 />} colorScheme="blue" size="lg" w="100%">
+        <VStack gap={3}>
+          <Button leftIcon={<FiEdit3 />} colorPalette="blue" size="lg" w="100%">
             Edit Profile
           </Button>
 
@@ -220,7 +240,7 @@ export function ProfilePage() {
 
           <Button
             leftIcon={<FiLogOut />}
-            colorScheme="red"
+            colorPalette="red"
             variant="outline"
             size="lg"
             w="100%"
