@@ -3,7 +3,6 @@ import {
   FiHome,
   FiCalendar,
   FiMessageCircle,
-  FiUser,
   FiTrendingUp,
 } from "react-icons/fi";
 import type { IconType } from "react-icons";
@@ -19,7 +18,6 @@ const navItems: NavItem[] = [
   { icon: FiCalendar, label: "Events", index: 1 },
   { icon: FiMessageCircle, label: "Chat", index: 2 },
   { icon: FiTrendingUp, label: "Leaderboard", index: 3 },
-  { icon: FiUser, label: "Profile", index: 4 },
 ];
 
 interface BottomNavigationProps {
