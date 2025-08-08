@@ -6,9 +6,10 @@ import {
   FiUser,
   FiTrendingUp,
 } from "react-icons/fi";
+import type { IconType } from "react-icons";
 
 interface NavItem {
-  icon: any;
+  icon: IconType;
   label: string;
   index: number;
 }
@@ -22,8 +23,8 @@ const navItems: NavItem[] = [
 ];
 
 interface BottomNavigationProps {
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
+  readonly currentPage: number;
+  readonly setCurrentPage: (page: number) => void;
 }
 
 export function BottomNavigation({
